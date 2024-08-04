@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -41,15 +42,23 @@ class MyApp extends StatelessWidget {
                   style: Theme.of(context).textTheme.headlineMedium,
                 ),
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                    onPressed: Provider.of<AppProvider>(context, listen: false)
+                        .decrementCounter,
+                    child: const Icon(Icons.exposure_minus_1_outlined),
+                  ),
+                  ElevatedButton(
+                    onPressed: Provider.of<AppProvider>(context, listen: false)
+                        .incrementCounter,
+                    child: const Icon(Icons.plus_one_outlined),
+                  ),
+                ],
+              )
             ],
           ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          // onPressed: _incrementCounter,
-          onPressed:
-              Provider.of<AppProvider>(context, listen: false).incrementCounter,
-          tooltip: 'Increment',
-          child: const Icon(Icons.add),
         ),
       ),
     );
